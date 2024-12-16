@@ -1,0 +1,38 @@
+# Node.js
+node_modules/
+dist/
+*.log
+npm-debug.log*
+.env
+.env.local
+.env.*.local
+
+# Logs
+logs/
+*.log
+*.gz
+
+# IDE/Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+*.swn
+
+# TypeScript
+*.tsbuildinfo
+
+# Storybook
+storybook-static/
+
+# Rollup
+rollup.config.js.map
+
+# Tests
+coverage/
+
+# Temp files
+*.tmp
+*.temp
+*.bak
+*.orig
