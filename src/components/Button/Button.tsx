@@ -7,7 +7,7 @@ export const Button: React.FC<ButtonProps> = (props) => {
     const { label, type = "default", onClick } = props;
 
     return (
-        <AntdButton type={type} onClick={onClick}>
+        <AntdButton type={type} onClick={onClick} className="ivao-button">
             {label}
         </AntdButton>
     );

@@ -32,6 +32,7 @@ export default {
             babelHelpers: "bundled",
         }),
         terser(),
+        styles({ mode: 'extract' }),
     ],
     external: Object.keys(packageJson.peerDependencies || {}),
     onwarn: (warning, warn) => {

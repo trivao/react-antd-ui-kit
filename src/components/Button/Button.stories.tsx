@@ -29,17 +29,17 @@ const Template: StoryFn<ButtonProps> = (args) => <Button {...args} />;
 export const Primary = Template.bind({});
 Primary.args = {
     label: "Primary Button",
-    type: "primary",
+    type: "primary"
 };
 
 export const Default = Template.bind({});
 Default.args = {
     label: "Default Button",
-    type: "default",
+    type: "default"
 };
 
 export const Dashed = Template.bind({});
 Dashed.args = {
     label: "Dashed Button",
-    type: "dashed",
+    type: "dashed"
 };
