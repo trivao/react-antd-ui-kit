@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button Component matches snapshot 1`] = `
+<DocumentFragment>
+  <button
+    class="ant-btn css-dev-only-do-not-override-1kf000u ant-btn-default ant-btn-color-default ant-btn-variant-outlined button"
+    type="button"
+  >
+    <span>
+      Snapshot Test Button
+    </span>
+  </button>
+</DocumentFragment>
+`;
