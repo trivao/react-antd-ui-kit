@@ -3,11 +3,15 @@ import { Button as AntdButton } from "antd";
 import { ButtonProps } from "./Button.types";
 import "./Button.styles.scss";
 
-export const Button: React.FC<ButtonProps> = (props) => {
+const Button: React.FC<ButtonProps> = (props) => {
     const { label, type = "default", onClick } = props;
 
     return (
-        <AntdButton type={type} onClick={onClick} className="ivao-button">
+        <AntdButton
+            type={type}
+            onClick={onClick}
+            className={"button"}
+        >
             {label}
         </AntdButton>
     );
