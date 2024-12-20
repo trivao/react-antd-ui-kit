@@ -1,7 +1,6 @@
 # React Ant Design UI Kit 🚀
 
-`@trivao/react-antd-ui-kit`  
-A collection of customizable React UI components built using **Ant Design** and **TailwindCSS** to speed up your frontend development process.
+A collection of customizable React UI components built using `Ant Design` and `TailwindCSS` to speed up your frontend development process.
 
 ---
 
