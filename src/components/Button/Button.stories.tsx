@@ -1,6 +1,6 @@
 import React from "react";
 import { Meta, StoryFn } from "@storybook/react";
-import { Button } from "./Button";
+import Button from "./Button";
 import { ButtonProps } from "./Button.types";
 
 export default {
@@ -9,7 +9,7 @@ export default {
     parameters: {
         layout: "centered",
     },
-    tags: ['autodocs'],
+    tags: ["autodocs"],
     argTypes: {
         type: {
             control: {
@@ -29,17 +29,17 @@ const Template: StoryFn<ButtonProps> = (args) => <Button {...args} />;
 export const Primary = Template.bind({});
 Primary.args = {
     label: "Primary Button",
-    type: "primary"
+    type: "primary",
 };
 
 export const Default = Template.bind({});
 Default.args = {
     label: "Default Button",
-    type: "default"
+    type: "default",
 };
 
 export const Dashed = Template.bind({});
 Dashed.args = {
     label: "Dashed Button",
-    type: "dashed"
+    type: "dashed",
 };
