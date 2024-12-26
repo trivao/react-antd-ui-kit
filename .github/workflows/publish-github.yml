@@ -50,6 +50,7 @@ jobs:
                   git commit -m "chore: prepare for version bump" || echo "No changes to commit"
 
             - name: Bump version and commit
+              id: bump_version
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
               run: |
@@ -66,6 +67,21 @@ jobs:
                   echo "//npm.pkg.github.com/:_authToken=${{ secrets.PERSONAL_ACCESS_TOKEN }}" > ~/.npmrc
 
             - name: Publish to GitHub Packages
+              id: publish
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-              run: npm publish
+              run: |
+                  npm publish
+              continue-on-error: true
+
+            - name: Rollback if publish failed
+              if: failure() && steps.publish.outcome == 'failure'
+              run: |
+                  echo "Publish failed. Rolling back changes..."
+                  LAST_TAG=$(git describe --tags --abbrev=0)
+                  echo "Deleting tag: $LAST_TAG"
+                  git tag -d $LAST_TAG
+                  git push --delete origin $LAST_TAG || true
+                  echo "Resetting last commit"
+                  git reset --hard HEAD~1
+                  echo "Rollback complete"
