@@ -1,0 +1,71 @@
+name: Publish to GitHub Packages
+
+on:
+    push:
+        branches:
+            - master
+    pull_request:
+        branches:
+            - master
+
+jobs:
+    build-and-publish:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v3
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: 22.12.0
+                  cache: "npm"
+
+            - name: Install dependencies
+              run: npm install
+
+            - name: Configure Git user
+              run: |
+                  git config --global user.name "GitHub Actions"
+                  git config --global user.email "actions@github.com"
+
+            - name: Determine version bump
+              id: version
+              run: |
+                  LAST_COMMIT=$(git log -1 --pretty=%B)
+                  echo "Last commit: $LAST_COMMIT"
+                  if [[ "$LAST_COMMIT" =~ BREAKING[[:space:]]CHANGE ]]; then
+                    echo "major" > .version_bump
+                  elif [[ "$LAST_COMMIT" =~ ^feat ]]; then
+                    echo "minor" > .version_bump
+                  else
+                    echo "patch" > .version_bump
+                  fi
+                  cat .version_bump
+
+            - name: Clean working directory
+              run: |
+                  git add .
+                  git commit -m "chore: prepare for version bump" || echo "No changes to commit"
+
+            - name: Bump version and commit
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+              run: |
+                  VERSION_TYPE=$(cat .version_bump)
+                  echo "Bumping version: $VERSION_TYPE"
+                  npm version $VERSION_TYPE -m "chore(release): %s"
+                  git push origin master --follow-tags
+
+            - name: Build the library
+              run: npm run build
+
+            - name: Configure npm for GitHub Packages
+              run: |
+                  echo "//npm.pkg.github.com/:_authToken=${{ secrets.PERSONAL_ACCESS_TOKEN }}" > ~/.npmrc
+
+            - name: Publish to GitHub Packages
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+              run: npm publish

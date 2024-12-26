@@ -1,10 +1,10 @@
-import styles from 'rollup-plugin-styles';
+import styles from "rollup-plugin-styles";
 import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import babel from "@rollup/plugin-babel";
 import typescript from "@rollup/plugin-typescript";
 import peerDepsExternal from "rollup-plugin-peer-deps-external";
-import { terser } from "rollup-plugin-terser";
+import terser from "@rollup/plugin-terser";
 
 const packageJson = require("./package.json");
 
@@ -32,8 +32,21 @@ export default {
             presets: ["@babel/preset-react"],
             babelHelpers: "bundled",
         }),
-        terser(),
-        styles({ mode: 'extract' }),
+        terser({
+            compress: {
+                drop_console: true,
+                passes: 2,
+            },
+            mangle: {
+                properties: {
+                    regex: /^_/,
+                },
+            },
+            output: {
+                comments: false,
+            },
+        }),
+        styles({ mode: "extract" }),
     ],
     external: Object.keys(packageJson.peerDependencies || {}),
     onwarn: (warning, warn) => {
