@@ -3,7 +3,12 @@
 exports[`Button Component matches snapshot 1`] = `
 <DocumentFragment>
   <button
-    class="ant-btn css-dev-only-do-not-override-1kf000u ant-btn-default ant-btn-color-default ant-btn-variant-outlined button"
+    class="ant-btn css-dev-only-do-not-override-77tu7h ant-btn-default ant-btn-color-default ant-btn-variant-outlined 
+        px-4 py-2 rounded-md font-medium transition-all
+        
+        bg-white text-gray-700 border border-gray-300 hover:bg-gray-50
+        
+    "
     type="button"
   >
     <span>

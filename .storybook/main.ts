@@ -9,10 +9,20 @@ const config: StorybookConfig = {
         "@storybook/addon-onboarding",
         "@storybook/addon-essentials",
         "@storybook/addon-interactions",
+        "@storybook/addon-controls",
+        "@storybook/addon-docs",
+        "@storybook/addon-actions",
     ],
     framework: {
         name: "@storybook/react-webpack5",
         options: {},
+    },
+    typescript: {
+        reactDocgen: "react-docgen-typescript",
+        reactDocgenTypescriptOptions: {
+            shouldExtractLiteralValuesFromEnum: true,
+            propFilter: (prop) => (prop.parent ? !/node_modules/.test(prop.parent.fileName) : true),
+        },
     },
     docs: {
         autodocs: "tag",

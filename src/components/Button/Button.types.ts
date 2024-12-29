@@ -1,5 +1,7 @@
-export interface ButtonProps {
+import { ButtonProps } from "antd";
+
+export interface IButtonProps extends ButtonProps {
     label: string;
-    type?: "primary" | "default" | "dashed" | "text" | "link";
+    type?: "primary" | "default" | "dashed";
     onClick?: () => void;
 }

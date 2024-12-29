@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Avatar Component renders Avatar with custom props as a snapshot 1`] = `
+<div>
+  <div
+    alt="Test Avatar"
+    class="custom-class"
+    data-testid="antd-avatar"
+    icon="[object Object]"
+    src="https://example.com/avatar.png"
+    style="background-color: red;"
+  >
+    <span
+      data-testid="children-content"
+    >
+      Children
+    </span>
+  </div>
+</div>
+`;
+
+exports[`Avatar Component renders Avatar with default props as a snapshot 1`] = `
+<div>
+  <div
+    data-testid="antd-avatar"
+  />
+</div>
+`;

@@ -1,7 +1,7 @@
 import React from "react";
 import { Meta, StoryFn } from "@storybook/react";
 import Button from "./Button";
-import { ButtonProps } from "./Button.types";
+import { IButtonProps } from "./Button.types";
 
 export default {
     title: "Components/Button",
@@ -14,7 +14,7 @@ export default {
         type: {
             control: {
                 type: "select",
-                options: ["primary", "default", "dashed", "text", "link"],
+                options: ["primary", "default", "dashed"],
             },
         },
         label: {
@@ -24,18 +24,18 @@ export default {
     },
 } as Meta;
 
-const Template: StoryFn<ButtonProps> = (args) => <Button {...args} />;
-
-export const Primary = Template.bind({});
-Primary.args = {
-    label: "Primary Button",
-    type: "primary",
-};
+const Template: StoryFn<IButtonProps> = (args) => <Button {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
     label: "Default Button",
     type: "default",
+};
+
+export const Primary = Template.bind({});
+Primary.args = {
+    label: "Primary Button",
+    type: "primary",
 };
 
 export const Dashed = Template.bind({});

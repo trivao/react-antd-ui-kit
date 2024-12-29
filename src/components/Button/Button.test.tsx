@@ -32,8 +32,7 @@ describe("Button Component", () => {
         // Antd applies a specific class (e.g. "ant-btn-primary") when type="primary"
         expect(buttonElement).toHaveClass("ant-btn-primary");
     });
-
-    // Snapshot Test
+    
     test("matches snapshot", () => {
         const { asFragment } = render(<Button label="Snapshot Test Button" type="default" />);
         expect(asFragment()).toMatchSnapshot();
